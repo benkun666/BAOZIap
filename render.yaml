@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: baozi-recode-bandcomic
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app --workers 2 --threads 4 --timeout 60
+    healthCheckPath: /health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: BAOZI_LANGUAGE
+        value: cn
+      - key: BAOZI_DOMAIN
+        value: bzmgcn.com
+      - key: BAOZI_CDN
+        value: as.baozimh.com
+      - key: BAOZI_IMAGE_QUALITY
+        value: /w640
